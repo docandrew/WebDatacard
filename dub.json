@@ -1,0 +1,15 @@
+{
+	"authors": [
+		"Jon Andrew"
+	],
+	"name": "goatweb",
+	"license": "UnLicense",
+	"copyright": "",
+	"description": "GoatWeb",
+	"dependencies": {
+		"vibe-d": "~>0.7.26"
+	},
+	"versions": [
+		"VibeDefaultMain"
+	]
+}

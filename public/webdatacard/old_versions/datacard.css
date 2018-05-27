@@ -1,0 +1,265 @@
+html
+{
+    background: rgb(206,220,231); /* Old browsers */
+
+    background: -moz-linear-gradient(-45deg, rgba(206,220,231,1) 0%, rgba(89,106,114,1) 100%); /* FF3.6-15 */
+
+    background: -webkit-linear-gradient(-45deg, rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%); /* Chrome10-25,Safari5.1-6 */
+
+    background: linear-gradient(135deg, rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cedce7', endColorstr='#596a72',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    vertical-align: top;
+    background: white;
+}
+
+h3 {
+    text-decoration: underline;
+    font-size: 16px;
+    font-style: bold;
+    
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+
+    padding: 0px;
+}
+
+th {
+    text-align: center;
+    font-size: 13px;
+}
+
+p {
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+
+    padding: 0px;
+}
+
+.babyCaption {
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-left: 0px;
+  margin-bottom: 0px;
+
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-left: 0px;
+  padding-bottom: 0px;
+
+  text-align: left;
+  font-size: 9px;
+}
+
+.topMenu {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.briefTextarea {
+    width: 100%;
+    overflow: auto;
+    font-size: 12px;
+    font-family: "Times New Roman", Times, serif;
+    border: 0px;
+}
+
+.centerApp {
+    width: 80%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mainTable {
+    border: 3px solid black;
+}
+
+.briefDebriefTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cardTableHalf {
+    width: 50%;
+    border-collapse: collapse;
+}
+
+.cardFold {
+    width: 10px;
+    border: 0px;
+}
+
+.profileTable {
+    width: 100%;
+}
+
+.missionCells {
+    overflow: auto;
+    border: 0px;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 12px;
+    width: 80px;
+    text-align: center;
+}
+
+.textwrapper {
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    border: 0px;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.button {
+    display: inline-block;
+    padding: 1em;
+    background-color: #00CC22;
+    text-decoration: none;
+    color: white;
+
+    font-family: "Helvetica", Arial, sans-serif;
+    font-weight: bold;
+    
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    
+    /*
+    -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    box-shadow: rgba(0,0,0,1) 0 1px 0;
+    */
+}
+
+/* Fancy Button Effect for bottom. Shamelessly stolen from... */
+/*! 
+ * Hover.css (http://ianlunn.github.io/Hover/) 
+ * Version: 2.0.2 
+ * Author: Ian Lunn @IanLunn 
+ * Author URL: http://ianlunn.co.uk/ 
+ * Github: https://github.com/IanLunn/Hover 
+  
+ * Made available under a MIT License: 
+ * http://www.opensource.org/licenses/mit-license.php 
+  
+ * Hover.css Copyright Ian Lunn 2014. Generated with Sass. 
+*/ 
+
+/* Sweep To Right */
+.hvr-sweep-to-right {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+.hvr-sweep-to-right:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #00EE22;
+  
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: 0 50%;
+  transform-origin: 0 50%;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.hvr-sweep-to-right:hover, .hvr-sweep-to-right:focus, .hvr-sweep-to-right:active {
+  color: white;
+}
+.hvr-sweep-to-right:hover:before, .hvr-sweep-to-right:focus:before, .hvr-sweep-to-right:active:before {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
+
+
+/* NicEditor for rich text */
+
+/*<!-CDATA[*/
+#sortieTextEditor {
+    border: 2px dashed #888888;
+    margin-top: 5px;
+    margin-left: auto; 
+    margin-right: auto; 
+    margin-bottom: 5px;
+    
+    font-size: 12px; 
+    background-color:#FFFFFF; 
+    
+    padding: 3px; 
+    width: 400px; 
+    height: 500px;
+}
+
+.nicEdit-selected {
+    border: 2px solid #FFFFFF !important;
+}
+
+.nicEdit-panel {
+    background-color: #FFFFFF !important;
+}
+
+.nicEdit-button {
+    background-color: #FFFFFF !important;
+}
+/*]]>*/

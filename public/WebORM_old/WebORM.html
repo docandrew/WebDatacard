@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="us">
+    <head>
+	   <meta charset="utf-8">
+       <!-- <link rel="stylesheet" href="WebORM.css"> -->
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+       
+       <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+       <link rel="stylesheet" href="WebORM.css">
+       
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+       <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+       <script src="WebORM.js"></script>
+	   
+       <title>Web ORM</title>
+    </head>
+    
+    <body onload="registerHandlers()">
+    
+        <div class="row container-fluid headerBG">
+            <h1>Web ORM</h1>
+        </div>
+        
+        <br>
+        <br>
+        <br>
+        
+        <div class="row">
+            <div class="col-sm-3 menu">
+                <div class="list-group">
+                    <li class="list-group-item">Weather</li>
+                    <li class="list-group-item">NOTAMS</li>
+                    <li class="list-group-item">Bird Hazard</li>
+                    <li class="list-group-item">Submit ORM</li>
+                </div>
+            </div>
+            <div class="col-sm-8 container">
+                <table class="table table-striped table-hover table-bordered">
+                    <thead>
+                        <tr class="ORMRow">
+                            <th colspan="3">Mission Considerations</th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>Formation</td>
+                        <td><input type="checkbox" class="ORMInput"></td>
+                        <td>2 points</td>
+                    </tr>
+                    <tr>
+                        <td>LPUs Required</td>
+                        <td><input type="checkbox" class="ORMInput"></td>
+                        <td>1 point</td>
+                    </tr>
+                
+                    <thead>
+                        <tr>
+                            <th colspan="3">Weather Considerations</th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>Crosswinds > 20 kts, Gusty Winds or Tailwind</td>
+                        <td><input type="checkbox"></td>
+                        <td>1 points</td>
+                    </tr>
+                    <tr>
+                        <td>Dep or dest. WX less than 1500/3</td>
+                        <td><input type="checkbox"></td>
+                        <td>1 point</td>
+                    </tr>
+                    
+                    <thead>
+                        <tr>
+                            <th colspan="3">Human Factors</th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td>No Experienced IP onboard</td>
+                        <td><input type="checkbox"></td>
+                        <td>1 point</td>
+                    </tr>
+                    <tr>
+                        <td>UI on CAP/PC or EC/Previous sortie unsat</td>
+                        <td><input type="checkbox"></td>
+                        <td>2 points</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

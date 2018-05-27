@@ -1,0 +1,253 @@
+<!--TODO:
+
+ - Form loading from either server or local file
+ - Have fall-back to TextArea if NicEdit doesn't load or display properly.
+ - Consider NicEdit text boxes over in the BRIEF and DEBRIEF tables. (maybe)
+ - Editable fields for mission data (basically done)
+   - drop down or autocomplete for callsign, etc.
+   - auto-fill WX, TOLD based on local wx conditions. (in progress)
+ - Printing support
+-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mission Datacard</title>
+        <link rel="stylesheet" type="text/css" href="datacard.css">
+        <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+
+        <script type="text/javascript" src="datacard.js"></script>
+        <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+        <script type="text/javascript" src="wgxpath.install.js"></script>
+        <script type="text/javascript">
+        //<![CDATA[
+            bkLib.onDomLoaded(function() {
+                var myNicEditor = new nicEditor();
+                myNicEditor.setPanel('myNicPanel');
+                myNicEditor.addInstance('sortieTextEditor');
+            });
+        //]]>
+        </script>
+        
+    </head>
+    
+    <body onload="registerHandlers()">
+ 
+    <div class="centerApp">
+    
+
+    <div id="topMenu" class="topMenu">
+        <div id="myNicPanel" style="width: 350px; float:left"></div>
+
+        <a class="button hvr-sweep-to-right" style="margin-left: 20px;" href="#" onclick="autoFillWX()">Auto WX/TOLD</a>
+        <a class="button hvr-sweep-to-right" href="#" onclick="loadCard()">Load Card</a>
+    </div>
+
+    <br>
+    <br>
+    
+    <form id=dataCardForm>
+    <table class="mainTable">
+        <tr>
+            <!--                   -->
+            <!-- Left Half of Card -->
+            <!--                   -->
+            
+            <td id="leftHalfOfCard" class="cardTableHalf">
+                <table id="profileTable" class="profileTable">
+                    <tr>
+                        <th colspan=5>FIGHTING BILLYGOATS MISSION DATA</th>
+                    <tr>
+                    <tr>
+                        <th>CALL SIGN</th>
+                        <th>FRONT</th>
+                        <th>BACK</th>
+                        <th>SCHED T/O</th>
+                        <th>AIRCRAFT</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" id="callsign1" name="callsign1" class="missionCells userdata" tabindex="1" onchange="autoFillFormFreq()"/></td>
+                        <td><input type="text" id="frontPilot1" class="missionCells userdata" tabindex="2"/></td>
+                        <td><input type="text" id="backPilot1" class="missionCells userdata" tabindex="3"/></td>
+                        <td><input type="text" id="schedTakeoff1" name="schedTakeoff1" class="missionCells userdata" tabindex="4" onchange="autoFillChock()"/></td>
+                        <td><input type="text" id="aircraft1" class="missionCells userdata" tabindex="5"/></td>
+                    <tr>  
+                    <tr>
+                        <td><input type="text" id="callsign2" class="missionCells userdata" tabindex="6"></td>
+                        <td><input type="text" id="frontPilot2" class="missionCells userdata" tabindex="7"></td>
+                        <td><input type="text" id="backPilot2" class="missionCells userdata" tabindex="8"></td>
+                        <td><input type="text" id="schedTakeoff2" class="missionCells userdata" tabindex="9"></td>
+                        <td><input type="text" id="aircraft2" class="missionCells userdata" tabindex="10"></td>
+                    </tr>
+                    <tr>
+                        <th>TOLD</th>
+                        <th>WEATHER</th>
+                        <th>SORTIE</th>
+                        <th>TIME/FREQ</th>
+                        <th>FUELS</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p class="babyCaption">Runway</p>
+                            <input type="text" id="runway" class="missionCells userdata" tabindex="11">
+                        </td>
+                        <td>
+                            <p class="babyCaption">Alternate</p>
+                            <input type="text" id="alternate" class="missionCells userdata" tabindex="12">
+                        </td>
+                        <td>
+                            <p class="babyCaption">Mission</p>
+                            <input type="text" id="mission" class="missionCells userdata" tabindex="13">
+                        </td>
+                        <td>
+                            <p class="babyCaption">Chocks</p>
+                            <input type="text" id="chockTime" name="chockTime" class="missionCells userdata" tabindex="14">
+                        </td>
+                        <td>
+                            <p class="babyCaption">Joker</p>
+                            <input type="text" id="jokerFuel" class="missionCells userdata" tabindex="15">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p class="babyCaption">T/O Roll</p>
+                            <input type="text" id="takeoffRoll" class="missionCells userdata" tabindex="16">
+                        </td>
+                        <td>
+                            <p class="babyCaption">Ceiling/vis</p>
+                            <input type="text" id="ceilingVis" class="missionCells userdata" tabindex="17">
+                        </td>
+                        <td>
+                            <p class="babyCaption">FP</p>
+                            <input type="text" id="flightPlan" class="missionCells userdata" tabindex="18">
+                        </td>
+                        <td>
+                            <p class="babyCaption">Freq</p>
+                            <input type="text" id = "formFreq" name="formFreq" class="missionCells userdata" tabindex="19">
+                        </td>
+                        <td>
+                            <p class="babyCaption">Bingo</p>
+                            <input type="text" id="bingoFuel" class="missionCells userdata" tabindex="20">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p class="babyCaption">Abort</p>
+                            <input type="text" id="abortSpeed" class="missionCells userdata" tabindex="21">
+                        </td>
+                        <td>
+                            <p class="babyCaption">Alt Winds</p>
+                            <input type="text" id="altitudeWinds" class="missionCells userdata" tabindex="22">
+                        </td>
+                        <td rowspan=2 colspan=3 style="font-size: 12px;">
+                            <p class="babyCaption">Clearance/ATIS</p>
+                            <div class="textWrapper">
+                                <textarea rows="4" cols="40" id="clearanceArea" class="briefTextArea userdata" style="border-color: white;"></textarea>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p class="babyCaption">Ldg Roll</p>
+                            <input type="text" id="landingDistance" class="missionCells userdata" tabindex="26">
+                        </td>
+                        <td>
+                            <p class="babyCaption">Sfc Winds</p>
+                            <input type="text" id="surfaceWinds" class="missionCells userdata" tabindex="27">
+                        </td>
+                    </tr>
+                </table>
+                    
+                <div id="sortieTextEditor"></div>
+            </td>
+            
+            <!-- <td id="cardFold" class="cardFold"></td> -->
+            
+            <!--                    -->
+            <!-- Right Half of Card -->
+            <!--                    -->            
+            
+            <td id="rightHalfOfCard" class="cardTableHalf">
+                <table id="briefDebriefTable" class="briefDebriefTable">
+                    <tr>
+                        <th colspan=2>BRIEF</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3>Mission Objective</h3>
+                            <div class="textwrapper"><textarea id="missionObjective" rows="4" cols="28" class="briefTextarea userdata">Demonstrate proficiency flying and instructing formation maneuvers</textarea></div>
+                            <h3>Training Objectives</h3>
+                            <div class="textwrapper"><textarea id="trainingObjective" rows="4" cols="28" class="briefTextarea userdata">1. <3 IRTs.&#13;&#10; 2. 0 IP-directed KIOs.&#13;&#10; 3. 0 MOA Busts</textarea></div>
+                            <h3>EP:</h3>
+                            <div class="textwrapper"><textarea id="emergencyProcedure" rows="2" cols="28" class="briefTextarea userdata">Fire in Flight</textarea></div>
+                            <h3>Instructor Topic</h3>
+                            <div class="textwrapper"><textarea id="instructorTopic" rows="2" cols="28" class="briefTextarea userdata">Turning Rejoins</textarea></div>
+                            <h3>SSRs</h3>
+                            <div class="textwrapper"><textarea id="specialSyllabus" rows="2" cols="28" class="briefTextarea userdata"></textarea></div>
+                        </td>
+                        <td>
+                            <p>TIME HACK</p>
+                            <p>OBJECTIVES</p>
+                            <p>OVERVIEW</p>
+                            <p>MISSION DATA CARD</p>
+                            <p>ORM CARD</p>
+                            <p>FCIF/OPS NOTES</p>
+                            <p>NOTAMS</p>
+                            <p>WX</p>
+                            <p>CONTINGENCIES</p>
+                            <p>SPINS</p>
+                            <p>SIIs</p>
+                            <p>TRs</p>
+                            <p>CRM</p>
+                            <p>EPOD</p>
+                            <p>ITOD</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th colspan=2>DEBRIEF</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h3>BRIEF:</h3>
+                            <div class="textwrapper"><textarea id="brief" rows="4" cols="28" class="briefTextarea"></textarea></div>
+                            <h3>EXECUTION:</h3>
+                            <div class="textwrapper"><textarea id="execution" rows="4" cols="28" class="briefTextarea"></textarea></div>
+                        </td>
+                        <td>
+                            <p>OBJECTIVES</p>
+                            <p>BRIEFING</p>
+                            <p>GROUND OPS</p>
+                            <p>MISSION</p>
+                            <p>RECONSTRUCTION</p>
+                            <p>  -Takeoff</p>
+                            <p>  -Departure</p>
+                            <p>  -Area Work</p>
+                            <p>  -Recovery/Landing</p>
+                            <p>  -General</p>
+                            <p>  -SIIs/Comms/CRM</p>
+                            <p>  -Lessons Learned</p>
+                            <p>  -Comments/Questions</p>
+                        </td>
+                </table>
+            </td>
+        </tr>  
+    </table>
+    </form>
+    
+    <br>
+    
+    <a class="button hvr-sweep-to-right" href="#" onclick="sendORM()">My ORM</a>
+    <a class="button hvr-sweep-to-right" href="#" onclick="printCard()">Print</a>
+    <a class="button hvr-sweep-to-right" href="#" onclick="saveCard()">Save for Later</a>
+    
+    </div>
+
+    <!-- DIALOGS -->
+    <div id="dialog-confirm" title="Add WX to Card?">
+        <p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span></p>
+    </div>
+
+    </body>
+</html>
